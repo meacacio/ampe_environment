@@ -9,9 +9,9 @@ list_of_src_files_to_link=['practica2_connection/torch_practica2.cpp']
 
 #Appending STONNE code to the list in order to link the sources
 for filename in os.listdir(practica2_src_dir):
-    if((filename != "main.cpp") and (filename.endswith("cpp"))):
+    if (not filename.startswith("main") and filename.endswith("cpp")):
         filename_path = os.path.join(practica2_src_dir, filename)
-        #print(filename_path)
+        print(filename_path)
         list_of_src_files_to_link.append(filename_path)
 
 print(list_of_src_files_to_link)

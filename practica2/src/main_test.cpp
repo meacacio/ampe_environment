@@ -70,16 +70,10 @@ bool runLinearCommand(int argc, char *argv[]) {
     }
 
     //Computing the original version
-    auto start_seq = high_resolution_clock::now(); 
     practica2LinearSeq(MK_matrix, KN_matrix, output_seq, M, K, N);
-    auto stop_seq = high_resolution_clock::now(); 
-    auto duration_seq = duration_cast<milliseconds>(stop_seq - start_seq); 
 
     //Computing the optimized version
-    auto start_opt = high_resolution_clock::now();
     practica2Linear(MK_matrix, KN_matrix, output, M, K, N);
-    auto stop_opt = high_resolution_clock::now();
-    auto duration_opt = duration_cast<milliseconds>(stop_opt - start_opt);
 
     /** CHECKING the results to make sure that the output is correct  **/
 
@@ -101,10 +95,6 @@ bool runLinearCommand(int argc, char *argv[]) {
 
     //If the code does not stop then the TEST is correct
     std::cout << "\033[1;32mTest passed correctly \033[0m" << std::endl << std::endl;
-    //Printing durations
-    std::cout << "Time to compute sequential (original) version: " << duration_seq.count() << " milliseconds" << std::endl;
-    std::cout << "Time to compute optimized version: " << duration_opt.count() <<  " milliseconds" << std::endl;
-    std::cout << "Speedup optimized version: " << (float)((float)duration_seq.count() / (float)duration_opt.count()) << std::endl;
 
     free(MK_matrix);
     free(KN_matrix);
